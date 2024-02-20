@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= movie.title %> </title>
+    <link rel='stylesheet' href='/css/style.css' />
+
+</head>
+<body>
+    <figure>
+        <img src="/img/logo-DH.png" alt="Logo Digital House">
+    </figure>
+    <h1><%= movie.title %> </h1>    
+    <br>
+    <p>RATING: <%= movie.rating %> </p>
+    <p>AWARDS: <%= movie.awards %> </p>
+    <p>LENGTH: <%= movie.length + ' min'%> </p>
+    <p>RELEASE DATE: <%= movie.release_date %> </p>
+    <p>
+        <% for( let i=0; i< movie.actores.length; i++){ %>
+            <p>
+                actores : <%= movie.actores[i].first_name %>   <%= movie.actores[i].last_name %>
+
+            </p>------Tabla intermedia</p>
+            <p>
+                id de la tabla: <%= movie.actores[i].Peliculas_Actores.id %>
+            </p>
+            <p>
+                id de la peli: <%= movie.actores[i].Peliculas_Actores.movie_id %>
+            </p>
+            <p>
+                id del actor: <%= movie.actores[i].Peliculas_Actores.actor_id %>
+            </p>
+
+            <br>
+            
+        <% } %>
+    </p>
+ 
+
+    <a href="/movies/<%= movie.id %>"><button>Editar pelicula</button></a>
+
+    <form method="POST" action="/movies/<%= movie.id%>?_method=DELETE" onsubmit="return confirm('¿Estás seguro de que quieres borrar esta película?');">
+        <button type="submit">Borrar Película</button>
+    </form>
+
+</body>
+</html>
